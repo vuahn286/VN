@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viet-Rus Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>PHẦN MỀM HỖ TRỢ DỊCH THUẬT</h1>
+    </header>
+    <div class="container">
+        <!-- Phần dịch văn bản -->
+        <div class="translator-box">
+            <div class="language-selector">
+                <select id="sourceLang">
+                    <option value="auto">Auto Detect</option>
+                    <option value="Vietnamese">Tiếng Việt</option>
+                    <option value="Russian">Русский</option>
+                    <option value="English">English</option>
+                </select>
+                <button class="swap-btn" onclick="swapLanguages()">↔</button>
+                <select id="targetLang">
+                    <option value="Russian">Русский</option>
+                    <option value="Vietnamese">Tiếng Việt</option>
+                    <option value="English">English</option>
+                </select>
+            </div>
+            
+            <div class="text-boxes">
+                <div class="source-box">
+                    <textarea id="sourceText" placeholder="Nhập văn bản..." oninput="autoTranslate()"></textarea>
+                    <div class="tools">
+                        <button onclick="startSpeechRecognition()">🎤</button>
+                        <button onclick="clearText()">×</button>
+                    </div>
+                </div>
+                
+                <div class="target-box">
+                    <textarea id="translatedText" readonly></textarea>
+                    <div class="tools">
+                        <button onclick="copyTranslation()">📋</button>
+                        <button onclick="speakTranslation()">🔊</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần dịch file -->
+        <div class="file-translator">
+            <h3>Dịch tài liệu</h3>
+            <input type="file" id="fileInput" accept=".pdf,.docx,.pptx">
+            <button onclick="translateFile()">Dịch File</button>
+            <div id="fileTranslationResult"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
